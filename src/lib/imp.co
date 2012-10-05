@@ -1,0 +1,40 @@
+if typeof define !== \function
+  define = (require \amdefine) module
+
+define ->
+  class Imp
+    ->
+      @defs = {}
+
+    def: !(cF, cT, f)->
+      @defs@[cF][cT] = f
+
+    undef: !(cF, cT, f)->
+      if (ref = @defs[cF])[cT]
+        delete ref[cT]
+        delete @defs[cF] if ref === {}
+
+    isDef: (cF, cT)->
+      @defs[cF]?[cT]?
+
+    conv: (o, cT)->
+      @defs[o.constructor]?[cT]? o
+
+    wrap: (...sig)->
+      (f)~>
+        (...args)~>
+          aT = []
+          i = 0
+          while i < sig.length
+            t = sig[i]
+            if t instanceof Array
+              t = t.0
+              num = args.length - sig.length + 1
+              while num-- > 0
+                a = args.shift!
+                aT.push if a.constructor === t then a else @conv a, t
+            else
+              a = args.shift!
+              aT.push if a.constructor === t then a else @conv a, t
+            i++
+          f ...aT

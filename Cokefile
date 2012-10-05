@@ -1,0 +1,16 @@
+{spawn} = require \child_process
+
+# build output directory
+build = \build
+
+task \build !->
+  spawn \mkdir [\-p build]
+
+  # build all Coco files
+  spawn \coco [\-c, \-o, build, \src]
+
+  # copy everything else
+  spawn \bash [\-c "find src | grep -v \\.co$ | while read src; do dst=\"#build/${src\#\#src/}\"; if test -d \"$src\"; then mkdir \"$dst\"; else cp \"$src\" \"$dst\"; fi; done"]
+
+task \clean !->
+  spawn \rm [\-rf build]

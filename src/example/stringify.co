@@ -1,0 +1,30 @@
+imp = new (require \../lib/imp)
+
+class A
+  (@name)->
+
+a = new A \Bob
+
+# make sure no conversion is defined
+console.log imp.isDef A, String
+
+# define conversion A -> String
+imp.def A, String, JSON.stringify
+
+# is defined
+console.log imp.isDef A, String
+
+# convert successfully
+console.log imp.conv a, String
+
+# convert unsuccessfully due to no definition
+console.log imp.conv a, Object
+
+# undefine conversion A -> String
+imp.undef A, String, JSON.stringify
+
+# is not defined
+console.log imp.isDef A, String
+
+# convert unsuccessfully due to deleted definition
+console.log imp.conv a, String

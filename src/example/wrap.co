@@ -1,0 +1,21 @@
+imp = new (require \../lib/imp)
+
+class A
+  (@name)->
+
+class B
+  (@name, @birthday)->
+
+# define conversions to String for A and B
+imp.def A, String, JSON.stringify
+imp.def B, String, JSON.stringify
+
+# create a function that takes two Strings and prints them
+fa = imp.wrap(String, String) !(a, b)->
+  console.log "a: #a"
+  console.log "b: #b"
+
+a = new A \Alice
+b = new B \Bob, \1970-01-01
+
+fa a, b

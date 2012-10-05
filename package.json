@@ -1,0 +1,24 @@
+{
+  "name": "Imp",
+  "version": "0.0.1",
+  "description": "Implicit type conversion",
+  "main": "build/lib/imp.js",
+  "dependencies": {
+    "amdefine": "~0.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ksdlck/Imp.git"
+  },
+  "keywords": [
+    "implicit",
+    "type",
+    "conversion"
+  ],
+  "author": "Karel Sedláček",
+  "license": "BSD"
+}
