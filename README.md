@@ -4,8 +4,6 @@ Imp
 Implicit type conversion for Javascript
 ---------------------------------------
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 Imp should be both browser and node ready out of the box.
 `lib/imp.js` uses [RequireJS](http://requirejs.org/) for browser and the standard `require` with node, courtesy of [amdefine](https://github.com/jrburke/amdefine).
 
